@@ -67,4 +67,14 @@ body:after {
   align-items: center;
   height: 100vh;
 }
+@media (max-width: 860px) {
+  html{
+    font-size: 40%;
+  }
+}
+@media (max-width: 360px) {
+  html{
+    font-size: 30.5%;
+  }
+}
 </style>
