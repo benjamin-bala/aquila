@@ -1,28 +1,70 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Heading v-bind:links="links"/>
+    <ImageCard />
+    <NavBar />
+    <QuickLinks v-bind:links="links"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Heading from './components/Heading.vue'
+import ImageCard from './components/ImageCard.vue'
+import NavBar from './components/NavBar.vue'
+import QuickLinks from './components/QuickLinks.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Heading,
+    ImageCard,
+    NavBar,
+    QuickLinks
+  },
+  data() {
+    return{
+      links: {}
+    }
+  },
+  created() {
+    axios.get('https://hirng-x2021.glitch.me/api').then(files => this.links = files.data).catch(console.log)
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+*,*::before, *::after{
+ margin: 0rem;
+  padding: 0rem;
+  box-sizing: inherit;
+}
+html{
+  font-size: 62.5%;
+}
+body { 
+  background:#CB2964; 
+  color: #fafafa;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+body:after {
+  content:"";
+  background:#BD0F4D;
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:50%;
+  left:0;
+  content:" ";
+  z-index:-1;
+}
+#app{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
 }
 </style>
