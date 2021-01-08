@@ -2,9 +2,9 @@
   <div class="quick-links">
     <ul>
         <li v-bind:key="name" v-for="name in links.social_media">
-            <div>
+            <div class="img-box">
                 <img 
-                    :src="require(`../assets/${'instagram'}.svg`)" 
+                    :src="require(`../assets/${name == `aquilaveion@aquil.com` ? `email` : name == `aquilaveionofficial` ? `instagram` : name == `aquilaveionsnaps` ? `snapchat` : `twitter`}.svg`)" 
                     :alt="name"
                 />
                 <p>{{`@${name}`}}</p>
@@ -26,21 +26,12 @@ export default {
     },
     computed:{
         imagename (){
-            // let key = Object.keys(this.links.social_media);
             let name = this.image_name.map(handle => {
                 return require(`../assets/${handle}.svg`)
             })
             return name
         }
     },
-    // methods:{
-    //     generate(){
-    //         let key = Object.keys(this.links.social_media);
-    //         key.map(img =>{
-    //             return
-    //         })
-    //     }
-    // }
 }
 </script>
 
@@ -48,11 +39,15 @@ export default {
 <style scoped>
 .quick-links{
     position: absolute;
-    left: 97%;
+    left: 96%;
     top: 35%,
 }
 .quick-links ul{
     list-style-type: none;
+    transition: all 1s ease-in;
+}
+.quick-links ul li:hover{
+    transform: scale(1.2);
 }
 .quick-links ul li{
     padding: 2rem 0rem;
@@ -68,10 +63,18 @@ export default {
     padding: 0.4rem 0rem;
     font-size: 1.2rem;
 }
-/* @media (max-width: 768px) {
+.quick-links ul li div p {
+    display: none;
+}
+.img-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media (max-width: 870px) {
     .quick-links{
         top: 0;
-        right: 50%;
+        left: 0%;
     }
     .quick-links ul{
         display: flex;
@@ -80,5 +83,10 @@ export default {
     .quick-links ul li{
         margin: 0rem 2rem;
     }
-} */
+    .quick-links ul li div p{
+        display: block;
+        font-size: 1.4rem;
+    }
+    
+}
 </style>

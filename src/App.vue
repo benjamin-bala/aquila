@@ -48,6 +48,7 @@ body {
   color: #fafafa;
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  overflow: hidden;
 }
 body:after {
   content:"";
